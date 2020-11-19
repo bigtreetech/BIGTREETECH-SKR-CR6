@@ -1,6 +1,9 @@
 #ifndef RTS_H
 #define RTS_H
 
+#include "../../inc/MarlinConfig.h"
+#ifdef RTS_AVAILABLE
+
 #include "string.h"
 #include <arduino.h>
 
@@ -238,11 +241,11 @@ extern char waitway;
 extern int change_page_font;
 extern int Update_Time_Value;
 extern unsigned char AxisUnitMode;
-extern bool home_flag;
+//extern bool home_flag;
 extern bool heat_flag;
 extern bool print_finish;
 extern bool finish_home;
-extern bool AutohomeZflag;
+//extern bool AutohomeZflag;
 extern char commandbuf[30];
 
 extern bool StartPrint_flag;
@@ -250,4 +253,5 @@ extern bool StartPrint_flag;
 extern char errorway;
 extern char errornum;
 
+#endif
 #endif// RTS_H

@@ -1,3 +1,5 @@
+#include "../../inc/MarlinConfig.h"
+#ifdef RTS_AVAILABLE
 #include "Flash.h"
 
 void STM32_FlashRead(uint32 addreaa, uint8_t *data, uint32_t len)
@@ -21,3 +23,4 @@ void STM32_FlashWrite(uint32 addreaa,uint8_t *data, uint32_t len)
   }
   FLASH_Lock();
 }
+#endif

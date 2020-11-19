@@ -223,7 +223,7 @@ void GcodeSuite::G28(const bool always_home_all) {
   }
 
   home_flag = true;
-
+ #ifdef RTS_AVAILABLE
   if(waitway == 4 || waitway == 6 || waitway == 7)
   {
     if(language_change_font != 0)
@@ -239,6 +239,7 @@ void GcodeSuite::G28(const bool always_home_all) {
       change_page_font = 61;
     }
   }
+ #endif
 
   #if ENABLED(DUAL_X_CARRIAGE)
     bool IDEX_saved_duplication_state = extruder_duplication_enabled;
@@ -366,7 +367,8 @@ void GcodeSuite::G28(const bool always_home_all) {
       #endif
         (parser.seenval('R') ? parser.value_linear_units() : Z_HOMING_HEIGHT)
     );
-
+    
+    #ifdef RTS_AVAILABLE
     if(finish_home == false && waitway != 7)
     {
       if (z_homing_height && (doX || doY)) {
@@ -377,6 +379,7 @@ void GcodeSuite::G28(const bool always_home_all) {
         }
       }
     }
+     #endif
 
     #if ENABLED(QUICK_HOME)
 

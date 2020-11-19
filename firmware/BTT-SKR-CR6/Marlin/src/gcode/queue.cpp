@@ -530,8 +530,10 @@ void GCodeQueue::get_serial_commands() {
         if (card_eof) {
 
           card.printingHasFinished();
-
+          
+          #ifdef RTS_AVAILABLE
           print_finish = 1;
+          #endif
 
           if (IS_SD_PRINTING())
             sd_count = 0; // If a sub-file was printing, continue from call point

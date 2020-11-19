@@ -192,6 +192,9 @@
   #include "libs/L6470/L6470_Marlin.h"
 #endif
 
+bool home_flag = false;
+bool AutohomeZflag = false;
+
 const char NUL_STR[] PROGMEM = "",
            G28_STR[] PROGMEM = "G28",
            M21_STR[] PROGMEM = "M21",
@@ -872,7 +875,7 @@ void setup() {
   pinMode(LED_CONTROL_PIN,OUTPUT);
   digitalWrite(LED_CONTROL_PIN,0);
   HAL_init();
- pinMode(LED_CONTROL_PIN,OUTPUT);
+  pinMode(LED_CONTROL_PIN,OUTPUT);
   digitalWrite(LED_CONTROL_PIN,0);
   #if HAS_DRIVER(L6470)
     L6470.init();         // setup SPI and then init chips

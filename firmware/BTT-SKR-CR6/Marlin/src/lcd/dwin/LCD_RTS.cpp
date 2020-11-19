@@ -1,9 +1,11 @@
+#include "../../inc/MarlinConfig.h"
+#ifdef RTS_AVAILABLE
 #include "LCD_RTS.h"
 #include <arduino.h>
 #include <wstring.h>
 #include <stdio.h>
 #include <libmaple/usart.h>
-#include "../../inc/MarlinConfig.h"
+
 #include "../../../Version.h"
 
 #include "../../Marlin.h"
@@ -90,8 +92,8 @@ unsigned long VolumeSet = 0x80;
 bool print_finish = false;
 bool finish_home = false;
 
-bool home_flag = false;
-bool AutohomeZflag = false;
+// bool home_flag = false;
+// bool AutohomeZflag = false;
 char cmdbuf[20] = {0};
 
 unsigned short int checktime = 0;
@@ -1999,3 +2001,5 @@ void ErrorHanding()
     }
   }
 }
+
+#endif

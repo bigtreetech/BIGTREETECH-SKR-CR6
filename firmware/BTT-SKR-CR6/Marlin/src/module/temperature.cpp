@@ -3055,8 +3055,9 @@ void Temperature::tick() {
         first_loop = false;
 
       } while (wait_for_heatup && TEMP_CONDITIONS);
-
+   
       if (wait_for_heatup) {
+        #ifdef RTS_AVAILABLE
         if(heat_flag && printingIsActive())
         {
           if(language_change_font != 0)
@@ -3071,6 +3072,7 @@ void Temperature::tick() {
           }
         }
         heat_flag = 0;
+        #endif
         #ifdef DWIN_LCDDISPLAY
           HMI_flag.heat_flag = 0;
           duration_t elapsed = print_job_timer.duration();	// print timer
@@ -3082,6 +3084,7 @@ void Temperature::tick() {
           printerEventLEDs.onHeatingDone();
         #endif
       }
+   
 
       return wait_for_heatup;
     }
