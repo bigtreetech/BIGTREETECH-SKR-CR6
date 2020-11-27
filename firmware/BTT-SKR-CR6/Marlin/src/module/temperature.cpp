@@ -2924,7 +2924,12 @@ void Temperature::tick() {
     void Temperature::auto_report_temperatures() {
       if (auto_report_temp_interval && ELAPSED(millis(), next_temp_report_ms)) {
         next_temp_report_ms = millis() + 1000UL * auto_report_temp_interval;
-        PORT_REDIRECT(SERIAL_BOTH);
+        // Do not duplicate this standard text report to the second port when the second port is the Creality DWIN display
+        // The Creality DWIN display has its own special communication protocol; temperature status etc is sent to it
+        // in the LCD package (LCD_RTS.cpp).
+        #if DISABLED(RTS_AVAILABLE)
+          PORT_REDIRECT(SERIAL_BOTH);
+        #endif
         print_heater_states(active_extruder);
         SERIAL_EOL();
       }
