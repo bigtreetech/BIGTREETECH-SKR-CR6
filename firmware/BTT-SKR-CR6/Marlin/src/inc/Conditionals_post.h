@@ -301,7 +301,7 @@
  * Override here because this is set in Configuration_adv.h
  */
 #if HAS_LCD_MENU && DISABLED(ELB_FULL_GRAPHIC_CONTROLLER)
-  #undef SD_DETECT_INVERTED
+  //#undef SD_DETECT_INVERTED
 #endif
 
 /**
@@ -1773,7 +1773,7 @@
     // When sharing the SD card with a PC we want the menu options to
     // mount/unmount the card and refresh it. So we disable card detect.
     //
-    #undef SD_DETECT_PIN
+    //#undef SD_DETECT_PIN
     #define SHARED_SD_CARD
   #endif
   #if DISABLED(SHARED_SD_CARD)
